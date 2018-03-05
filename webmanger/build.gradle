@@ -1,0 +1,43 @@
+apply plugin: 'com.android.library'
+
+//http://blog.csdn.net/f917386389/article/details/52121809
+//com.zhjirui.utils:webmanger:1.0.2
+ext{
+    PUBLISH_GROUP_ID = 'com.zhjirui.utils'
+    PUBLISH_ARTIFACT_ID = 'webmanger'
+    PUBLISH_VERSION = '1.0.2'
+}
+android {
+    compileSdkVersion 25
+    buildToolsVersion '25.0.0'
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 25
+        versionCode 2
+        versionName "1.0.2"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    testCompile 'junit:junit:4.12'
+    compile 'com.github.lzyzsd:jsbridge:1.0.4'
+}
+
+/** 以下开始是将Android Library上传到jcenter的相关配置**/
+
+//apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
